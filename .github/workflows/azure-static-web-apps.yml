@@ -35,6 +35,8 @@ jobs:
           REACT_APP_AZURE_OPENAI_KEY: ${{ secrets.REACT_APP_AZURE_OPENAI_KEY }}
           REACT_APP_AZURE_OPENAI_DEPLOYMENT: ${{ secrets.REACT_APP_AZURE_OPENAI_DEPLOYMENT }}
           REACT_APP_AZURE_OPENAI_API_VERSION: ${{ secrets.REACT_APP_AZURE_OPENAI_API_VERSION }}
+          REACT_APP_AUTH_USERNAME: ${{ secrets.REACT_APP_AUTH_USERNAME }}
+          REACT_APP_AUTH_PASSWORD: ${{ secrets.REACT_APP_AUTH_PASSWORD }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
