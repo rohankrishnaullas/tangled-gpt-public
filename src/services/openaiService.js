@@ -1,7 +1,31 @@
 const AZURE_ENDPOINT = process.env.REACT_APP_AZURE_OPENAI_ENDPOINT;
-const AZURE_API_KEY = process.env.REACT_APP_AZURE_OPENAI_API_KEY;
+const AZURE_API_KEY = process.env.REACT_APP_AZURE_OPENAI_KEY;
 const DEPLOYMENT_NAME = process.env.REACT_APP_AZURE_OPENAI_DEPLOYMENT || 'gpt-4o';
 const API_VERSION = '2024-02-15-preview';
+
+function validateAzureConfig() {
+  if (!AZURE_ENDPOINT || AZURE_ENDPOINT.includes('your-resource-name')) {
+    throw new Error(
+      'Azure OpenAI endpoint is not configured. Set REACT_APP_AZURE_OPENAI_ENDPOINT in .env (example: https://<resource-name>.openai.azure.com/).'
+    );
+  }
+
+  if (!AZURE_API_KEY || AZURE_API_KEY.includes('your-api-key-here')) {
+    throw new Error(
+      'Azure OpenAI API key is not configured. Set REACT_APP_AZURE_OPENAI_KEY in .env.'
+    );
+  }
+
+  if (!DEPLOYMENT_NAME || DEPLOYMENT_NAME.includes('your-')) {
+    throw new Error(
+      'Azure OpenAI deployment is not configured. Set REACT_APP_AZURE_OPENAI_DEPLOYMENT in .env (for example: gpt-4o).'
+    );
+  }
+}
+
+function getAzureEndpoint() {
+  return AZURE_ENDPOINT.endsWith('/') ? AZURE_ENDPOINT : `${AZURE_ENDPOINT}/`;
+}
 
 /**
  * Stream chat completion from Azure OpenAI
@@ -10,8 +34,12 @@ const API_VERSION = '2024-02-15-preview';
  * @param {AbortSignal} signal - AbortController signal for cancellation
  */
 export async function streamChatCompletion(messages, onChunk, signal) {
+  validateAzureConfig();
+
+  const endpoint = getAzureEndpoint();
+
   console.log('🔍 OpenAI Service Config:', {
-    endpoint: AZURE_ENDPOINT,
+    endpoint,
     deployment: DEPLOYMENT_NAME,
     apiVersion: API_VERSION,
     hasApiKey: !!AZURE_API_KEY
@@ -19,7 +47,7 @@ export async function streamChatCompletion(messages, onChunk, signal) {
   
   console.log('📤 Sending messages:', messages);
   
-  const url = `${AZURE_ENDPOINT}openai/deployments/${DEPLOYMENT_NAME}/chat/completions?api-version=${API_VERSION}`;
+  const url = `${endpoint}openai/deployments/${DEPLOYMENT_NAME}/chat/completions?api-version=${API_VERSION}`;
 
   const response = await fetch(url, {
     method: 'POST',
