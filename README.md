@@ -9,6 +9,15 @@ A mobile-first ChatGPT-like interface featuring custom personality modes inspire
 ![Azure](https://img.shields.io/badge/Azure-OpenAI-green)
 ![Mobile First](https://img.shields.io/badge/Mobile-First-orange)
 
+## 🔗 Live Site
+
+- Local: [http://localhost:3000](http://localhost:3000)
+- Repository: [https://github.com/rohankrishnaullas/tangled-gpt-public](https://github.com/rohankrishnaullas/tangled-gpt-public)
+
+## 🖼️ Screenshot
+
+![Tangled-GPT Home](./public/screenshot-home.png)
+
 ## 🌟 Features
 
 ### Core Features
