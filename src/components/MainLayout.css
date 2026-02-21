@@ -1,0 +1,236 @@
+.main-layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+/* Header */
+.app-header {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(20px);
+  background: var(--bg-header);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background var(--transition-normal), border-color var(--transition-normal);
+}
+
+/* Menu Button */
+.menu-btn {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.menu-btn:hover {
+  background: var(--bg-hover);
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  font-size: 1.3rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--bg-hover);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.app-avatar {
+  font-size: 2rem;
+}
+
+.app-name {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(155, 135, 245, 0.3);
+}
+
+.personality-selector-chips {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.personality-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border: 2px solid var(--border-light);
+  border-radius: 20px;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+.personality-chip:hover {
+  background: var(--bg-hover);
+  border-color: rgba(102, 126, 234, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.personality-chip.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.personality-chip.active:hover {
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.chip-avatar {
+  font-size: 1.1rem;
+}
+
+.chip-name {
+  font-weight: 500;
+}
+
+.mode-tabs {
+  display: flex;
+  gap: 0;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 0.25rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+}
+
+.mode-tab {
+  padding: 0.6rem 2rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.mode-tab.active {
+  background: var(--bg-primary);
+  color: var(--accent-primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.mode-tab:not(.active):hover {
+  background: var(--bg-hover);
+}
+
+.voice-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voice-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .app-header {
+    padding: 1rem;
+  }
+
+  .header-center {
+    gap: 0.75rem;
+  }
+
+  .app-name {
+    font-size: 1.5rem;
+  }
+
+  .personality-selector-chips {
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .personality-chip {
+    flex: 1;
+    justify-content: center;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .chip-name {
+    display: none;
+  }
+  
+  .chip-avatar {
+    font-size: 1.3rem;
+  }
+
+  .mode-tabs {
+    width: 100%;
+  }
+
+  .mode-tab {
+    flex: 1;
+    padding: 0.5rem 1rem;
+  }
+}
+
